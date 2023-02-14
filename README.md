@@ -2,6 +2,7 @@ Prerequisites: to run the project **docker-compose** (https://docs.docker.com/co
 
 
 To build and run the application execute:
+
 **./gradlew start**
 
 It will:
@@ -27,5 +28,6 @@ http://localhost:8080/savings/a/balance \
   curl -X GET \
   http://localhost:8080/savings/a/balance
 
-After tests we need shutdown composer by command  
+After tests we need shutdown composer by command:
+
 **./gradlew stop**
