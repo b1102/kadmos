@@ -1,0 +1,4 @@
+rootProject.name = 'kadmos'
+include 'savings_service'
+include 'gateway'
+

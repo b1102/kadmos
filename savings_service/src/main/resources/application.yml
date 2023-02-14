@@ -1,0 +1,43 @@
+spring:
+  profiles:
+    active: savings_a
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    platform: postgres
+    driverClassName: org.postgresql.Driver
+
+---
+server:
+  port: 8081
+spring:
+  config:
+    activate:
+      on-profile: savings_a
+  datasource:
+    url: jdbc:postgresql://savings-postgres-a:5432/postgres
+    username: savings_service_user_a
+    password: super_secret_password_a
+
+custom:
+  account:
+    id: a
+
+---
+server:
+  port: 8082
+spring:
+  config:
+    activate:
+      on-profile: savings_b
+  datasource:
+    url: jdbc:postgresql://savings-postgres-b:5432/postgres
+    username: savings_service_user_b
+    password: super_secret_password_b
+
+custom:
+  account:
+    id: b

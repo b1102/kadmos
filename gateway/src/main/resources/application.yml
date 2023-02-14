@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 5s
+      routes:
+        - id: savings-service-a
+          uri: http://savings-service-a:8081/
+          predicates:
+            - Path=/savings/a/**
+        - id: savings-service-b
+          uri: http://savings-service-b:8082/
+          predicates:
+            - Path=/savings/b/**
+
+logging:
+  level:
+    org.springframework: INFO
+    com.sergkobiakov: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+    file: "%d %p %c{1.} [%t] %m%n"
+  file: log.log

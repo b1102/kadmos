@@ -1,0 +1,49 @@
+version: '3.5'
+
+services:
+  savings-postgres-a:
+    container_name: savings-postgres-a
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: savings_service_user_a
+      POSTGRES_PASSWORD: super_secret_password_a
+      PGDATA: /data/savings_postgres_a
+
+  savings-postgres-b:
+    container_name: savings-postgres-b
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: savings_service_user_b
+      POSTGRES_PASSWORD: super_secret_password_b
+      PGDATA: /data/savings_postgres_b
+
+  savings-service-a:
+    depends_on: [ savings-postgres-a ]
+    container_name: savings-service-a
+    image: sergkobiakov/savings_service
+    build:
+      context: savings_service
+      dockerfile: Dockerfile
+    environment:
+      spring_profiles_active: savings_a
+
+  savings-service-b:
+    depends_on: [ savings-postgres-b ]
+    container_name: savings-service-b
+    image: sergkobiakov/savings_service
+    build:
+      context: savings_service
+      dockerfile: Dockerfile
+    environment:
+      spring_profiles_active: savings_b
+
+  gateway:
+    depends_on: [ savings-service-a, savings-service-b ]
+    container_name: gateway
+    image: sergkobiakov/gateway
+    build:
+      context: gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+

@@ -1,0 +1,7 @@
+task start(type: Exec, dependsOn: ["savings_service:build", "gateway:build"]) {
+    commandLine 'sh', './scripts/start.sh'
+}
+
+task stop(type: Exec) {
+    commandLine 'sh', './scripts/stop.sh'
+}
