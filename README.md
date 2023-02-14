@@ -1,8 +1,8 @@
-Prerequisites: to run the project docker-compose (https://docs.docker.com/compose/) needed to be installed on the testing machine
+Prerequisites: to run the project **docker-compose** (https://docs.docker.com/compose/) needed to be installed on the testing machine
 
 
 To build and run the application execute:
-./gradlew start
+**./gradlew start**
 
 It will:
 * build savings services
@@ -27,5 +27,5 @@ http://localhost:8080/savings/a/balance \
   curl -X GET \
   http://localhost:8080/savings/a/balance
 
-After tests we need to shutdown composer by command  
-./gradlew stop
+After tests we need shutdown composer by command  
+**./gradlew stop**
